@@ -1,6 +1,6 @@
-%function load_images()
+%function load_data()
     %% Parameters
-    %data_path = uigetdir('.', 'Choose Directory of Images');
+    data_path = uigetdir('.', 'Choose Directory of Images');
     x_min = 0.1; x_max = 0.9;
     y_min = 0.2; y_max = 1.0;
     h_out = 224;
@@ -38,6 +38,7 @@
             rect = [round(W*x_min)+1, round(H*y_min), round(W*(x_max-x_min)), round(H*(y_max-y_min))];
             im_crop = imcrop(im_origin, rect);
             im_resize = imresize(im_crop, [h_out, w_out]);
+            
 %             figure
 %             subplot(2,2,1)
 %             imshow(im_origin)
@@ -48,6 +49,8 @@
 %             subplot(2,2,3)
 %             imshow(im_resize)
 %             title('Resized Image')
+%             pause
+
             data(im_id, :) = double(reshape(im_resize, 1, h_out*w_out))/255.0;
         end
         norm_data{i} = data;
