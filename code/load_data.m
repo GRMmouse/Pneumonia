@@ -1,4 +1,4 @@
-%function load_data()
+function load_data()
     %% Parameters
     data_path = uigetdir('.', 'Choose Directory of Images');
     x_min = 0.1; x_max = 0.9;
@@ -33,7 +33,13 @@
         data = zeros(length(files), h_out*w_out);
         for im_id = 1:length(files)
             file = files(im_id);
+            disp(file.name);
             im_origin = imread([file.folder filesep file.name]);
+            if (length(size(im_origin))==3)
+                % Process RGB imgs
+                disp("Reshaping RGB images");
+                im_origin = mean(im_origin, 3);
+            end
             [H, W] = size(im_origin);
             rect = [round(W*x_min)+1, round(H*y_min), round(W*(x_max-x_min)), round(H*(y_max-y_min))];
             im_crop = imcrop(im_origin, rect);
@@ -59,13 +65,20 @@
         data = zeros(length(files), h_out*w_out);
         for im_id = 1:length(files)
             file = files(im_id);
+            disp(file.name);
             im_origin = imread([file.folder filesep file.name]);
             [H, W] = size(im_origin);
+            if (length(size(im_origin))==3)
+                % Process RGB imgs
+                im_origin = mean(im_origin, 3);
+            end
             rect = [round(W*x_min)+1, round(H*y_min), round(W*(x_max-x_min)), round(H*(y_max-y_min))];
             im_crop = imcrop(im_origin, rect);
             im_resize = imresize(im_crop, [h_out, w_out]);
             data(im_id, :) = double(reshape(im_resize, 1, h_out*w_out))/255.0;
         end
         pneu_data{i} = data;
+        save("data.mat", "pneu_data", "norm_data"); 
     end
-%end
+    save("data.mat", "pneu_data", "norm_data");
+end
