@@ -2,5 +2,6 @@
 **/*.jpeg
 **/*.mat
 **/*.asv
+**/*.m~
 data/
 result/
