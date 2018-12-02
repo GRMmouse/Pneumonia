@@ -3,8 +3,8 @@ function load_data()
     data_path = uigetdir('.', 'Choose Directory of Images');
     x_min = 0.1; x_max = 0.9;
     y_min = 0.2; y_max = 1.0;
-    h_out = 224;
-    w_out = 224;
+    h_out = 32;
+    w_out = 32;
     
     %% Initialization
     names = {'val', 'test', 'train'};
