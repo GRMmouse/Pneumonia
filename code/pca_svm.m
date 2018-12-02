@@ -2,9 +2,6 @@
 % Precision: .7333
 % Recall: .9872
 
-%% Parameters
-num_pcs = 50;
-
 %% Load Data
 if (~ exist("norm_data"))
     load("data.mat");
