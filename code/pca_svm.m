@@ -1,6 +1,9 @@
-% Accuracy: .7468
-% Precision: .7180
-% Recall: .9795
+% Accuracy: .7676
+% Precision: .7333
+% Recall: .9872
+
+%% Parameters
+num_pcs = 50;
 
 %% Load Data
 if (~ exist("norm_data"))
@@ -15,8 +18,10 @@ testX = [norm_data{2}; pneu_data{2}];
 testY = [zeros(size(norm_data{2}, 1), 1); ones(size(pneu_data{2}, 1), 1)];
 
 %% PCA
-[score, latent, var_explained] = choose_pc(trainX, 32);
-sprintf("%.2f of total variance explained", var_explained)
+[score, latent, var_explained] = choose_pc(trainX, num_pcs);
+fprintf("%.2f%% of total variance explained\n", var_explained*100);
+trainX = trainX*score;
+testX = testX*score;
 
 %% Classification
 mdl = fitcsvm(trainX, trainY);
