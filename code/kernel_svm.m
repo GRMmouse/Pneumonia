@@ -1,9 +1,6 @@
-% Accuracy: .77.08
-% Precision: .7342
-% Recall: .9923
-
-%% Parameters
-num_pcs = 50;
+% Accuracy: .7676
+% Precision: .7333
+% Recall: .9872
 
 %% Load Data
 if (~ exist("norm_data"))
@@ -24,8 +21,7 @@ trainX = trainX*score;
 testX = testX*score;
 
 %% Classification
-mdl = fitcsvm(trainX, trainY, 'Standardize',true,'KernelFunction','RBF',...
-    'KernelScale','auto');
+mdl = fitcsvm(trainX, trainY);
 disp("Finished Training");
 predY = predict(mdl, testX);
 

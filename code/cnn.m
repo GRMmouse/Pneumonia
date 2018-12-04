@@ -61,7 +61,7 @@ layers{6}.init_type = 'uniform'; % initialization method
 layers{7}.type = 'RELU'; % relu layer
 
 layers{8}.type = 'LOSS'; % loss layer
-layers{8}.num = 1; % number of classes (10 digits)
+layers{8}.num = 1; % number of classes
 
 
 m_train = size(trainX, 2);
