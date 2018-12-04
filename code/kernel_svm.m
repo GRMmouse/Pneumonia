@@ -39,7 +39,7 @@ recall = tp/(tp+fn)
 
 %% Plot
 close all
-[~, inds] = sort(abs(mdl.Beta), 'descend')
+[~, inds] = sort(abs(mdl.Beta), 'descend');
 figure
 scatter3(testX(testY==1 & predY==1, inds(1)), testX(testY==1 & predY==1, inds(2)),...
     testX(testY==1 & predY==1, inds(3)), 'c.')
