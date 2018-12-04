@@ -1,6 +1,9 @@
-% Accuracy: .7676
-% Precision: .7333
-% Recall: .9872
+% Accuracy: .77.08
+% Precision: .7342
+% Recall: .9923
+
+%% Parameters
+num_pcs = 50;
 
 %% Load Data
 if (~ exist("norm_data"))
