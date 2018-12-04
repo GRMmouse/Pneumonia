@@ -36,3 +36,23 @@ fn = sum(testY==1 & predY==0);
 acc = (tp+tn)/size(predY, 1)
 precision = tp/(tp+fp)
 recall = tp/(tp+fn)
+
+%% Plot
+close all
+[~, inds] = sort(abs(mdl.Beta), 'descend')
+figure
+scatter3(testX(testY==1 & predY==1, inds(1)), testX(testY==1 & predY==1, inds(2)),...
+    testX(testY==1 & predY==1, inds(3)), 'c.')
+hold on
+scatter3(testX(testY==0 & predY==1, inds(1)), testX(testY==0 & predY==1, inds(2)),...
+    testX(testY==0 & predY==1, inds(3)), 'mx')
+scatter3(testX(testY==0 & predY==0, inds(1)), testX(testY==0 & predY==0, inds(2)),...
+    testX(testY==0 & predY==0, inds(3)), 'y.')
+scatter3(testX(testY==1 & predY==0, inds(1)), testX(testY==1 & predY==0, inds(2)),...
+    testX(testY==1 & predY==0, inds(3)), 'kx')
+legend('tp','fp','tn','fn');
+xlabel('PC 1');
+ylabel('PC 2');
+zlabel('PC 3');
+axis square
+rotate3d on
